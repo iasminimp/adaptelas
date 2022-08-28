@@ -5,29 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use Illuminate\Http\Response;
+//use routes\web
 
 class PostController extends Controller
 {
-
-    private $posts;
-
-    public function __construct(Post $posts){
-        $this->posts = $posts;
-        
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(): View
+    public function index()
     {
-        $posts = $this->posts->all();
+        $posts = Post::all();
         //dd($posts);
-        //return view(view:'welcome','posts'->$posts);
-        //return view( view:'welcome', compact( var_name:'posts')); //ta aqui o erro:  [Cannot use positional argument after named argument]
-        return view('index', compact('posts'));
+        return view('welcome', compact('posts'));
     }
 
     /**
@@ -46,13 +37,14 @@ class PostController extends Controller
      * @param  \App\Http\Requests\StorePostRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePostRequest $request): string//View
+    public function store(StorePostRequest $request)
     {
-        $data = $request->validated();
+        //store: guardar post
+        $data = $request -> validated();
         Post::create($data);
 
         //return $this->index();
-        return redirect()-> route (name: 'blog.index');
+        return redirect()-> route('blog.index');
     }
 
     /**
@@ -95,10 +87,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(int $id)
     {
         $post = Post::find($id);
-        if(isset($post))$post->delete();
-        return redirect()->route (route:'blog.index');
+        if(isset($post)) $post->delete();
+        return redirect()-> route('blog.index');
     }
 }

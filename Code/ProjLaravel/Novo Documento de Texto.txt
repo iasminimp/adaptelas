@@ -1,0 +1,3 @@
+link proj adapti: https://github.com/adaptiOficial/blog-adaptelas
+
+projeto by iasmin:https://github.com/iasminimp/adaptelas/tree/master/Code/blog-adaptelas

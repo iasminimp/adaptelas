@@ -9,13 +9,6 @@ use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
-
-    private $posts;
-
-    public function __construct(Post $posts){
-        $this->posts = $posts;
-        
-    }
     /**
      * Display a listing of the resource.
      *
@@ -23,11 +16,10 @@ class PostController extends Controller
      */
     public function index(): View
     {
-        $posts = $this->posts->all();
+        $posts= Post::all();
         //dd($posts);
         //return view(view:'welcome','posts'->$posts);
-        //return view( view:'welcome', compact( var_name:'posts')); //ta aqui o erro:  [Cannot use positional argument after named argument]
-        return view('index', compact('posts'));
+        return view('welcome', compact('posts')); //ta aqui o erro:  [Cannot use positional argument after named argument] //mudei aq
     }
 
     /**
@@ -52,7 +44,7 @@ class PostController extends Controller
         Post::create($data);
 
         //return $this->index();
-        return redirect()-> route (name: 'blog.index');
+        return redirect()-> route ('blog.index'); //mudei aq
     }
 
     /**

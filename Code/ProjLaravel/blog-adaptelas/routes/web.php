@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +13,12 @@ use App\Http\Controllers\PostController;
 |
 */
 
-/* Route::get('/', function () {
-    return view('welcome');
-}); */
-Route::get('blog', [PostController::class, 'index']);
-Route::post('/blog/post',[PostController::class,'store'])->name('blog-store');
-Route::delete('/blog/post/{id}',[PostController::class,'destroy'])->name('blog-delete');
+Route::get('/blog', [PostController::class,'index'])->name('blog.index');
+Route::post('/blog/post', [PostController::class,'store'])->name('blog.store');
+Route::delete('/blog/post/{id}', [PostController::class,'destroy'])->name('blog.delete'); // Route::delete('/blog/post/{id?}', [PostController::class,'destroy'])->name('blog.delete');
+
+
+/*
+Route::get('/', function () {
+    return redirect()->route('blog.index');
+ });*/

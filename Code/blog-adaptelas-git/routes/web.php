@@ -14,9 +14,9 @@ use App\Http\Controllers\PostController;
 |
 */
 
-/* Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-}); */
-Route::get('blog', [PostController::class, 'index']);
-Route::post('/blog/post',[PostController::class,'store'])->name('blog-store');
-Route::delete('/blog/post/{id}',[PostController::class,'destroy'])->name('blog-delete');
+});*/
+Route::get('/blog',[PostController::class,'index'])->name(name:'blog.index');
+Route::post('/blog/post',[PostController::class,'store'])->name(name:'blog-store');
+Route::delete('/blog/post/{id}',[PostController::class,'destroy'])->name(name:'blog-delete');
