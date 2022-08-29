@@ -44,7 +44,7 @@ class PostController extends Controller
         Post::create($data);
 
         //return $this->index();
-        return redirect()-> route('blog.index');
+        return redirect()->route('blog.index');
     }
 
     /**
@@ -87,10 +87,13 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
+    /*public function destroy(Post $post){
+
+    }*/
     public function destroy(int $id)
     {
         $post = Post::find($id);
-        if(isset($post)) $post->delete();
-        return redirect()-> route('blog.index');
+        if (isset($post)) $post->delete();
+        return redirect()->route('blog.index');
     }
 }

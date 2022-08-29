@@ -22,7 +22,7 @@
     </head>
     <body class="antialiased" style='background-color:bisque; display:flex; flex-direction: column'>
         <h1>Meu Blog s2</h1>
-        <form id='meu-form' action="{{ route('blog.store') }}" method='POST' style='background-color:bisque; display:flex; flex-direction: column' enctype='multipart/form-data'>
+        <form id='meu-form' action="{{ Route('blog.store') }}" method='POST' style='background-color:bisque; display:flex; flex-direction: column' enctype='multipart/form-data'> 
             @csrf
             @method('POST')
             <label for="title" style="color:white"> 
@@ -45,9 +45,9 @@
                 <input name ="text" type="text">
             </label>   
         </form>
-        <input type="submit" form='meu-form'>
+        <!--<input type="submit" form='meu-form'>-->
+        <button type="submit" form="meu-form">Enviar</button>
 
-        
 
         <div>
             @isset($posts)
@@ -56,13 +56,12 @@
                     <h3>{{$post->description}}</h3>
                     <p>{{$post->text}}</p>
                     <span>By: {{$post->author}}</span>
-                    <form id="delete-{{$post->id}}" action="{{ route('blog.delete'), $post->id}}" method="POST">
+
+                    <form id="delete-{{$post->id}}" action="{{ Route('blog.delete', $post->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                     </form>
                     <button type="submit" form="delete-{{$post->id}}">Excluir</button>
-                    <!--<input type="submit" form='delete-{{$post->id}}'>
-                    <button type="submit" form="delete-{{$post->id}}"> Excluir </button>-->
                 @endforeach
             @endisset
         </div>
